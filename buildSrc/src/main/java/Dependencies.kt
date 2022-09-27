@@ -4,12 +4,12 @@ import VersionsApp.composeVersion
 import VersionsApp.coreVersion
 import VersionsApp.googleMaterial
 import VersionsApp.gsonVersion
+import VersionsApp.hilt
 import VersionsApp.lifecycleVersion
 import VersionsApp.systemBarsUiController
 import VersionsTest.espressoVersion
 import VersionsTest.extJunitVersion
 import VersionsTest.junitVersion
-import org.gradle.api.JavaVersion
 
 object VersionsBuild {
     const val applicationId            = "com.example.nasaApp"
@@ -31,6 +31,7 @@ object VersionsApp {
     const val systemBarsUiController   = "0.24.9-beta"
     const val googleMaterial           = "1.6.1"
     const val detekt                   = "1.21.0"
+    const val hilt                     = "2.41"
 }
 
 object VersionsTest {
@@ -56,6 +57,11 @@ object AppDependencies {
     const val composeUiTooling         = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     // Material3 - Status bar
     const val systemUiController       = "com.google.accompanist:accompanist-systemuicontroller:$systemBarsUiController"
+
+    //Hilt
+    const val hiltAndroid              = "com.google.dagger:hilt-android:$hilt"
+    const val hiltCompiler             = "com.google.dagger:hilt-android-compiler:$hilt"
+    const val hiltPlugin               = "com.google.dagger:hilt-android-gradle-plugin:$hilt"
 }
 
 object CoreDependencies {

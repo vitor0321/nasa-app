@@ -3,6 +3,9 @@ buildscript {
         google()
         mavenCentral()
     }
+    dependencies {
+        classpath AppDependencies.hiltPlugin
+    }
 }
 
 plugins {

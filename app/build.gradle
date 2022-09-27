@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: "$rootDir/config/detekt/detekt.gradle"
 
@@ -91,6 +93,10 @@ dependencies {
     implementation AppDependencies.composeMaterial3
     implementation AppDependencies.composeUiTooling
     implementation AppDependencies.systemUiController
+
+    //Hilt
+    implementation AppDependencies.hiltAndroid
+    kapt AppDependencies.hiltCompiler
 
     //Test
     testImplementation TestDependencies.junit
