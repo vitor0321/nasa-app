@@ -1,9 +1,7 @@
-plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
-}
+apply plugin: 'java-library'
+apply plugin:'org.jetbrains.kotlin.jvm'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = VersionsBuild.javaVersion
+    targetCompatibility = VersionsBuild.javaVersion
 }
