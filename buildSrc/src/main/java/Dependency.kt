@@ -12,7 +12,6 @@ import VersionsTest.junitVersion
 import org.gradle.api.JavaVersion
 
 object VersionsBuild {
-    val javaVersion                    = JavaVersion.VERSION_11
     const val applicationId            = "com.example.nasaApp"
     const val namespace                = "com.nasa.nasa_app"
     const val compileSdk               = 33

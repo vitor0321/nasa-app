@@ -3,9 +3,22 @@ apply plugin: 'org.jetbrains.kotlin.android'
 
 apply from: "$rootDir/config/detekt/detekt.gradle"
 
+def storeKeyPropertiesFile = rootProject.file("storeKey.properties")
+def storeKeyProperties = new Properties()
+storeKeyProperties.load(new FileInputStream(storeKeyPropertiesFile))
+
 android {
     namespace VersionsBuild.namespace
     compileSdk VersionsBuild.compileSdk
+
+    signingConfigs {
+        release {
+            storeFile file(storeKeyProperties['FILE_KEY'])
+            storePassword storeKeyProperties['STORE_KEY']
+            keyAlias storeKeyProperties['ALIAS_KEY']
+            keyPassword storeKeyProperties['STORE_KEY']
+        }
+    }
 
     defaultConfig {
         applicationId VersionsBuild.applicationId
@@ -20,18 +33,36 @@ android {
         }
     }
 
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        animationsDisabled = true
+    }
+
     buildTypes {
+        debug{
+            applicationIdSuffix '.debug'
+            debuggable = true
+        }
+        staging{
+            initWith debug
+            minifyEnabled true
+            applicationIdSuffix '.staging'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro',
+                    'proguard-rules-staging.pro'
+        }
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility VersionsBuild.javaVersion
-        targetCompatibility VersionsBuild.javaVersion
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = VersionsBuild.javaVersion
+        jvmTarget = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose true
