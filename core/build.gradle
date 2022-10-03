@@ -5,3 +5,16 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
+
+dependencies{
+
+    api(AppDependencies.okhttp3Interceptor)
+    api(platform(AppDependencies.okhttp3))
+    api(AppDependencies.okhttp3Ok)
+
+    implementation AppDependencies.javaxDep
+    api AppDependencies.retrofitConverter
+    api AppDependencies.coroutinesCore
+    api AppDependencies.retrofit
+    api AppDependencies.gson
+}

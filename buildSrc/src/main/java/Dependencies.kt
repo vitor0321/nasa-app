@@ -5,7 +5,12 @@ import VersionsApp.coreVersion
 import VersionsApp.googleMaterial
 import VersionsApp.gsonVersion
 import VersionsApp.hilt
+import VersionsApp.hiltCompAndroidx
+import VersionsApp.javaxVersion
+import VersionsApp.kotlinxCoroutines
 import VersionsApp.lifecycleVersion
+import VersionsApp.okhttp3Version
+import VersionsApp.retrofitVersion
 import VersionsApp.systemBarsUiController
 import VersionsTest.espressoVersion
 import VersionsTest.extJunitVersion
@@ -23,6 +28,7 @@ object VersionsBuild {
 
 object VersionsApp {
     const val coreVersion              = "1.9.0"
+    const val kotlinxCoroutines        = "1.6.0"
     const val lifecycleVersion         = "2.5.1"
     const val composeVersion           = "1.2.1"
     const val composeActivityVersion   = "1.6.0"
@@ -32,6 +38,10 @@ object VersionsApp {
     const val googleMaterial           = "1.6.1"
     const val detekt                   = "1.21.0"
     const val hilt                     = "2.41"
+    const val hiltCompAndroidx         = "1.0.0"
+    const val javaxVersion             = "1"
+    const val retrofitVersion          = "2.9.0"
+    const val okhttp3Version           = "4.9.0"
 }
 
 object VersionsTest {
@@ -47,6 +57,8 @@ object AppModules {
 object AppDependencies {
     const val core                     = "androidx.core:core-ktx:$coreVersion"
     const val lifecycle                = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    const val lifecycleViewmodel       = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    const val lifecycleLivedata        = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     const val composeActivity          = "androidx.activity:activity-compose:$composeActivityVersion"
     const val gson                     = "com.google.code.gson:gson:$gsonVersion"
 
@@ -61,7 +73,16 @@ object AppDependencies {
     //Hilt
     const val hiltAndroid              = "com.google.dagger:hilt-android:$hilt"
     const val hiltCompiler             = "com.google.dagger:hilt-android-compiler:$hilt"
+    const val hiltCompilerAndroidx     = "androidx.hilt:hilt-compiler:$hiltCompAndroidx"
     const val hiltPlugin               = "com.google.dagger:hilt-android-gradle-plugin:$hilt"
+
+    const val javaxDep                 = "javax.inject:javax.inject:$javaxVersion"
+    const val coroutinesCore           = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutines"
+    const val retrofit                 = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    const val retrofitConverter        = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    const val okhttp3                  = "com.squareup.okhttp3:okhttp-bom:$okhttp3Version"
+    const val okhttp3Ok                = "com.squareup.okhttp3:okhttp"
+    const val okhttp3Interceptor       = "com.squareup.okhttp3:logging-interceptor"
 }
 
 object CoreDependencies {

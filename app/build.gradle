@@ -9,6 +9,10 @@ def storeKeyPropertiesFile = rootProject.file("storeKey.properties")
 def storeKeyProperties = new Properties()
 storeKeyProperties.load(new FileInputStream(storeKeyPropertiesFile))
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     namespace VersionsBuild.namespace
     compileSdk VersionsBuild.compileSdk
@@ -33,6 +37,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY']
+        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/planetary/"'
     }
 
     testOptions {
@@ -84,8 +91,9 @@ dependencies {
 
     implementation AppDependencies.core
     implementation AppDependencies.lifecycle
+    implementation AppDependencies.lifecycleLivedata
+    implementation AppDependencies.lifecycleViewmodel
     implementation AppDependencies.composeActivity
-    implementation AppDependencies.gson
 
     //Compose
     implementation AppDependencies.materialGoogle
@@ -97,6 +105,7 @@ dependencies {
     //Hilt
     implementation AppDependencies.hiltAndroid
     kapt AppDependencies.hiltCompiler
+    kapt AppDependencies.hiltCompilerAndroidx
 
     //Test
     testImplementation TestDependencies.junit
