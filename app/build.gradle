@@ -1,37 +1,77 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: "$rootDir/config/detekt/detekt.gradle"
+
+def storeKeyPropertiesFile = rootProject.file("storeKey.properties")
+def storeKeyProperties = new Properties()
+storeKeyProperties.load(new FileInputStream(storeKeyPropertiesFile))
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    namespace 'com.example.nasa_app'
-    compileSdk 32
+    namespace rootProject.versions.namespace
+    compileSdk rootProject.versions.compileSdk
+
+    signingConfigs {
+        release {
+            storeFile file(storeKeyProperties['FILE_KEY'])
+            storePassword storeKeyProperties['STORE_KEY']
+            keyAlias storeKeyProperties['ALIAS_KEY']
+            keyPassword storeKeyProperties['STORE_KEY']
+        }
+    }
 
     defaultConfig {
-        applicationId "com.example.nasa_app"
-        minSdk 26
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.versions.applicationId
+        minSdk rootProject.versions.minSdk
+        targetSdk rootProject.versions.targetSdk
+        versionCode rootProject.versions.versionCode
+        versionName rootProject.versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY']
+        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/planetary/"'
+    }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        animationsDisabled = true
     }
 
     buildTypes {
+        debug{
+            applicationIdSuffix '.debug'
+            debuggable = true
+        }
+        staging{
+            initWith debug
+            minifyEnabled true
+            applicationIdSuffix '.staging'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro',
+                    'proguard-rules-staging.pro'
+        }
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose true
@@ -47,17 +87,39 @@ android {
 }
 
 dependencies {
+    def testDependencies = rootProject.ext.testDependencies
+    def appDependencies = rootProject.ext.appDependencies
+    def modules = rootProject.ext.modules
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.0.0-alpha02'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation project(modules.coreModule)
+
+    implementation appDependencies.core
+    implementation appDependencies.lifecycle
+    implementation appDependencies.lifecycleLivedata
+    implementation appDependencies.lifecycleViewmodel
+    implementation appDependencies.composeActivity
+
+    //Compose
+    implementation appDependencies.materialGoogle
+    implementation appDependencies.composeUi
+    implementation appDependencies.composeMaterial3
+    implementation appDependencies.composeUiTooling
+    implementation appDependencies.systemUiController
+    implementation appDependencies.composeCoil
+
+    implementation appDependencies.exoplayer
+
+    //Hilt
+    implementation appDependencies.hiltAndroid
+    kapt appDependencies.hiltCompiler
+    kapt appDependencies.hiltCompilerAndroidx
+
+    //Test
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.extJunit
+    androidTestImplementation testDependencies.espresso
+
+    androidTestImplementation testDependencies.composeJunit4
+    debugImplementation testDependencies.composeTooling
+    debugImplementation testDependencies.composeManifest
 }
