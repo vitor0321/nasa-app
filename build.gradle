@@ -1,10 +1,14 @@
 buildscript {
+    apply from: "$rootDir/tools/dependencies.gradle"
+
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath AppDependencies.hiltPlugin
+        def appDependencies = rootProject.ext.appDependencies
+
+        classpath appDependencies.hiltPlugin
     }
 }
 

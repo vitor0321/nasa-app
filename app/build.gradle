@@ -14,8 +14,8 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    namespace VersionsBuild.namespace
-    compileSdk VersionsBuild.compileSdk
+    namespace rootProject.versions.namespace
+    compileSdk rootProject.versions.compileSdk
 
     signingConfigs {
         release {
@@ -27,11 +27,11 @@ android {
     }
 
     defaultConfig {
-        applicationId VersionsBuild.applicationId
-        minSdk VersionsBuild.minSdk
-        targetSdk VersionsBuild.targetSdk
-        versionCode VersionsBuild.versionCode
-        versionName VersionsBuild.versionName
+        applicationId rootProject.versions.applicationId
+        minSdk rootProject.versions.minSdk
+        targetSdk rootProject.versions.targetSdk
+        versionCode rootProject.versions.versionCode
+        versionName rootProject.versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -87,34 +87,39 @@ android {
 }
 
 dependencies {
-    implementation project(AppModules.coreModule)
+    def testDependencies = rootProject.ext.testDependencies
+    def appDependencies = rootProject.ext.appDependencies
+    def modules = rootProject.ext.modules
 
-    implementation AppDependencies.core
-    implementation AppDependencies.lifecycle
-    implementation AppDependencies.lifecycleLivedata
-    implementation AppDependencies.lifecycleViewmodel
-    implementation AppDependencies.composeActivity
+    implementation project(modules.coreModule)
+
+    implementation appDependencies.core
+    implementation appDependencies.lifecycle
+    implementation appDependencies.lifecycleLivedata
+    implementation appDependencies.lifecycleViewmodel
+    implementation appDependencies.composeActivity
 
     //Compose
-    implementation AppDependencies.materialGoogle
-    implementation AppDependencies.composeUi
-    implementation AppDependencies.composeMaterial3
-    implementation AppDependencies.composeUiTooling
-    implementation AppDependencies.systemUiController
-    implementation AppDependencies.composeCoil
-    implementation "com.google.android.exoplayer:exoplayer:2.18.1"
+    implementation appDependencies.materialGoogle
+    implementation appDependencies.composeUi
+    implementation appDependencies.composeMaterial3
+    implementation appDependencies.composeUiTooling
+    implementation appDependencies.systemUiController
+    implementation appDependencies.composeCoil
+
+    implementation appDependencies.exoplayer
 
     //Hilt
-    implementation AppDependencies.hiltAndroid
-    kapt AppDependencies.hiltCompiler
-    kapt AppDependencies.hiltCompilerAndroidx
+    implementation appDependencies.hiltAndroid
+    kapt appDependencies.hiltCompiler
+    kapt appDependencies.hiltCompilerAndroidx
 
     //Test
-    testImplementation TestDependencies.junit
-    androidTestImplementation TestDependencies.extJunit
-    androidTestImplementation TestDependencies.espresso
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.extJunit
+    androidTestImplementation testDependencies.espresso
 
-    androidTestImplementation TestDependencies.composeJunit4
-    debugImplementation TestDependencies.composeTooling
-    debugImplementation TestDependencies.composeManifest
+    androidTestImplementation testDependencies.composeJunit4
+    debugImplementation testDependencies.composeTooling
+    debugImplementation testDependencies.composeManifest
 }

@@ -7,14 +7,15 @@ java {
 }
 
 dependencies{
+    def appDependencies = rootProject.ext.appDependencies
 
-    api(AppDependencies.okhttp3Interceptor)
-    api(platform(AppDependencies.okhttp3))
-    api(AppDependencies.okhttp3Ok)
+    api(appDependencies.okhttp3Interceptor)
+    api(platform(appDependencies.okhttp3))
+    api(appDependencies.okhttp3Ok)
 
-    implementation AppDependencies.javaxDep
-    api AppDependencies.retrofitConverter
-    api AppDependencies.coroutinesCore
-    api AppDependencies.retrofit
-    api AppDependencies.gson
+    implementation appDependencies.javaxDep
+    api appDependencies.retrofitConverter
+    api appDependencies.coroutinesCore
+    api appDependencies.retrofit
+    api appDependencies.gson
 }
