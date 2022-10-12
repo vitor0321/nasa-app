@@ -12,4 +12,8 @@ class AstronomyRepositoryImpl @Inject constructor(
     override suspend fun fetchAstronomyDay(): AstronomyDay {
         return astronomyRemoteDataSource.fetchAstronomyDay()
     }
+
+    override suspend fun getAstronomyDayOfDate(date: String): AstronomyDay {
+        return astronomyRemoteDataSource.getAstronomyDayOfDate(date)
+    }
 }

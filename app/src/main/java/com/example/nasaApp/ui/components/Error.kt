@@ -25,6 +25,7 @@ import com.nasa.nasa_app.R
 
 @Composable
 fun ErrorIndicator(
+    throwable: String?,
     modifier: Modifier = Modifier,
     @StringRes errorTextId: Int = R.string.error,
 ) {
@@ -44,7 +45,7 @@ fun ErrorIndicator(
         )
         Text(
             modifier = modifier,
-            text = stringResource(id = errorTextId),
+            text = throwable ?: stringResource(id = errorTextId),
             style = AppDefaultTypography.titleLarge
         )
         Spacer(modifier = Modifier.padding(bottom = 12.dp))
@@ -55,7 +56,7 @@ fun ErrorIndicator(
 @Preview
 fun ErrorIndicatorLightPreview() {
     NasaBasicTheme(useDarkTheme = false) {
-        ErrorIndicator()
+        ErrorIndicator(null)
     }
 }
 
@@ -63,6 +64,6 @@ fun ErrorIndicatorLightPreview() {
 @Preview
 fun ErrorIndicatorDarkPreview() {
     NasaBasicTheme(useDarkTheme = true) {
-        ErrorIndicator()
+        ErrorIndicator(null)
     }
 }

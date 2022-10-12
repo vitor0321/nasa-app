@@ -2,4 +2,5 @@
 <resources>
 
     <style name="Theme.Nasa" parent="Theme.Material3.DynamicColors.DayNight" />
+    <style name="CalenderViewCustom" parent="ThemeOverlay.Material3.MaterialCalendar"/>
 </resources>

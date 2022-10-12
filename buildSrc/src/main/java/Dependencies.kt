@@ -1,4 +1,5 @@
 import VersionsApp.composeActivityVersion
+import VersionsApp.composeCoilVersion
 import VersionsApp.composeMaterial
 import VersionsApp.composeVersion
 import VersionsApp.coreVersion
@@ -31,6 +32,7 @@ object VersionsApp {
     const val kotlinxCoroutines        = "1.6.0"
     const val lifecycleVersion         = "2.5.1"
     const val composeVersion           = "1.2.1"
+    const val composeCoilVersion       = "2.0.0-rc01"
     const val composeActivityVersion   = "1.6.0"
     const val composeMaterial          = "1.0.0-beta01"
     const val gsonVersion              = "2.9.0"
@@ -65,6 +67,7 @@ object AppDependencies {
     // Material3
     const val materialGoogle           = "com.google.android.material:material:$googleMaterial"
     const val composeUi                = "androidx.compose.ui:ui:$composeVersion"
+    const val composeCoil              = "io.coil-kt:coil-compose:$composeCoilVersion"
     const val composeMaterial3         = "androidx.compose.material3:material3:$composeMaterial"
     const val composeUiTooling         = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     // Material3 - Status bar

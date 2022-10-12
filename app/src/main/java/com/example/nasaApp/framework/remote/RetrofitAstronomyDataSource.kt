@@ -13,4 +13,8 @@ class RetrofitAstronomyDataSource @Inject constructor(
     override suspend fun fetchAstronomyDay(): AstronomyDay {
         return nasaApi.getAstronomyDay().toAstronomyDay()
     }
+
+    override suspend fun getAstronomyDayOfDate(date: String): AstronomyDay {
+        return nasaApi.getAstronomyDayOfDate(date).toAstronomyDay()
+    }
 }

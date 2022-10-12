@@ -1,4 +1,4 @@
-package com.example.nasaApp.ui
+package com.example.nasaApp.ui.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,11 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.core.domain.model.AstronomyDay
 import com.example.nasaApp.ui.components.AstronomyDayIndicator
+import com.example.nasaApp.ui.components.CalendarIndicator
 import com.example.nasaApp.ui.components.ErrorIndicator
-import com.example.nasaApp.ui.components.ImageFullIndicator
 import com.example.nasaApp.ui.components.ProgressIndicator
 import com.example.nasaApp.ui.theme.NasaBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         viewModel.state.observe(this) { uiSate ->
             initCompose(uiSate)
         }
-        viewModel.getAstronomyDay()
+        viewModel.fetchAstronomyDay()
     }
 
     private fun initCompose(uiSate: AstronomyViewModel.UiState) {
@@ -46,9 +47,19 @@ class MainActivity : ComponentActivity() {
                     when (uiSate) {
                         is AstronomyViewModel.UiState.Loading -> Loading()
                         is AstronomyViewModel.UiState.Success -> {
-                            AstronomyDay(data = uiSate.astronomyDay)
+                            AstronomyDay(
+                                astronomyDay = uiSate.astronomyDay,
+                                onClickImage = {
+
+                                },
+                                onClickOpenCalendar = { viewModel.openCalendar() }
+                            )
                         }
-                        is AstronomyViewModel.UiState.Error -> Error()
+                        is AstronomyViewModel.UiState.Error -> Error(uiSate.throwable)
+                        is AstronomyViewModel.UiState.OpenCalendar -> Calendar(
+                            onDateSelected = { viewModel.getAstronomyDayOfDate(it) },
+                            onDismissRequest = { viewModel.getAstronomyDayOfDate(it) }
+                        )
                     }
                 }
             }
@@ -58,17 +69,44 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Loading() {
-    ProgressIndicator()
+    NasaBasicTheme {
+        ProgressIndicator()
+    }
 }
 
 @Composable
-fun AstronomyDay(data: AstronomyDay, ) {
-    AstronomyDayIndicator(astronomyDay = data)
+fun AstronomyDay(
+    astronomyDay: AstronomyDay,
+    onClickImage: () -> Unit,
+    onClickOpenCalendar: () -> Unit
+) {
+    NasaBasicTheme {
+        AstronomyDayIndicator(
+            astronomyDay = astronomyDay,
+            onClickImage = { onClickImage() },
+            onClickOpenCalendar = { onClickOpenCalendar() }
+        )
+    }
 }
 
 @Composable
-fun Error() {
-    ErrorIndicator()
+fun Error(throwable: String?) {
+    NasaBasicTheme {
+        ErrorIndicator(throwable)
+    }
+}
+
+@Composable
+fun Calendar(
+    onDateSelected: (LocalDate) -> Unit,
+    onDismissRequest: (LocalDate) -> Unit
+) {
+    NasaBasicTheme {
+        CalendarIndicator(
+            onDateSelected = { onDateSelected(it) },
+            onDismissRequest = { onDismissRequest(it) }
+        )
+    }
 }
 
 @Preview(showBackground = true)
@@ -100,7 +138,9 @@ fun AstronomyDayDarkPreview() {
                 mediaType = "image",
                 title = "title",
                 url = "url"
-            )
+            ),
+            onClickImage = {},
+            onClickOpenCalendar = {}
         )
     }
 }
@@ -118,7 +158,9 @@ fun AstronomyDayLightPreview() {
                 mediaType = "image",
                 title = "title",
                 url = "url"
-            )
+            ),
+            onClickImage = {},
+            onClickOpenCalendar = { }
         )
     }
 }
