@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Nasaapp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Nasa" parent="Theme.Material3.DynamicColors.DayNight" />
+    <style name="CalenderViewCustom" parent="ThemeOverlay.Material3.MaterialCalendar"/>
 </resources>

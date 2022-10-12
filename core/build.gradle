@@ -1,9 +1,21 @@
-plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
-}
+apply plugin: 'java-library'
+apply plugin:'org.jetbrains.kotlin.jvm'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+dependencies{
+    def appDependencies = rootProject.ext.appDependencies
+
+    api(appDependencies.okhttp3Interceptor)
+    api(platform(appDependencies.okhttp3))
+    api(appDependencies.okhttp3Ok)
+
+    implementation appDependencies.javaxDep
+    api appDependencies.retrofitConverter
+    api appDependencies.coroutinesCore
+    api appDependencies.retrofit
+    api appDependencies.gson
 }
