@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.google.gms.google-services'
 
 apply from: "$rootDir/config/detekt/detekt.gradle"
 
@@ -116,6 +117,10 @@ dependencies {
     implementation appDependencies.hiltAndroid
     kapt appDependencies.hiltCompiler
     kapt appDependencies.hiltCompilerAndroidx
+
+    //Firebase
+    implementation platform(appDependencies.firebaseBom)
+    implementation appDependencies.firebaseAnalytics
 
     //Test
     testImplementation testDependencies.junit
