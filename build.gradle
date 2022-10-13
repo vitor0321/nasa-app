@@ -9,6 +9,7 @@ buildscript {
         def appDependencies = rootProject.ext.appDependencies
 
         classpath appDependencies.hiltPlugin
+        classpath appDependencies.googleServices
     }
 }
 

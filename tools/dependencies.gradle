@@ -28,6 +28,11 @@ ext {
         hiltCompilerAndroidx     : "androidx.hilt:hilt-compiler:$versions.hiltCompAndroidx",
         hiltPlugin               : "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt",
 
+        // Firebase
+        googleServices           : "com.google.gms:google-services:$versions.firebaseGoogle",
+        firebaseBom              : "com.google.firebase:firebase-bom:$versions.firebaseBom",
+        firebaseAnalytics        : "com.google.firebase:firebase-analytics-ktx",
+
         javaxDep                 : "javax.inject:javax.inject:$versions.javaxVersion",
         coroutinesCore           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines",
         retrofit                 : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
