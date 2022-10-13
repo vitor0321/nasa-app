@@ -76,6 +76,9 @@ android {
     buildFeatures {
         compose true
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
     composeOptions {
         kotlinCompilerExtensionVersion '1.1.1'
     }
