@@ -24,6 +24,8 @@ extensions.versions = [
         retrofitVersion          : "2.9.0",
         okhttp3Version           : "4.9.0",
         exoplayer                : "2.18.1",
+        firebaseGoogle           : "4.3.14",
+        firebaseBom              : "31.0.0",
 
         junitVersion             : "4.13.2",
         extJunitVersion          : "1.1.3",
