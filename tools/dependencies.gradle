@@ -2,7 +2,8 @@ apply from: "$rootDir/tools/dependencies-versions.gradle"
 
 ext {
     modules = [
-        coreModule               : ":core"
+        core                     : ":core",
+        testing                  : ":testing"
     ]
 
     appDependencies = [
@@ -52,5 +53,14 @@ ext {
         composeJunit4            : "androidx.compose.ui:ui-test-junit4:$versions.composeVersion",
         composeTooling           : "androidx.compose.ui:ui-tooling:$versions.composeVersion",
         composeManifest          : "androidx.compose.ui:ui-test-manifest:$versions.composeVersion",
+
+        roomTesting              : "androidx.room:room-testing:$versions.roomVersion",
+        runnerTest               : "androidx.test:runner:$versions.runnerVersion",
+        coreTestingVersion       : "androidx.arch.core:core-testing:$versions.coreTestingVersion",
+        kotlinxCoroutinesTest    : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.kotlinxCoroutines",
+        mockitoVersion           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoVersion",
+        hiltTest                 : "com.google.dagger:hilt-android-testing:$versions.hilt",
+        hiltTestCompiler         : "com.google.dagger:hilt-android-compiler:$versions.hilt",
+        navigationTest           : "androidx.navigation:navigation-testing:$versions.navigation"
     ]
 }
