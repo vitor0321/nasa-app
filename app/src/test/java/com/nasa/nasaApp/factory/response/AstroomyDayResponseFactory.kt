@@ -1,6 +1,6 @@
 package com.nasa.nasaApp.factory.response
 
-import com.nasa.nasaApp.framework.network.response.DataAstronomyDayResponse
+import com.nasa.nasaApp.framework.network.response.astronomyDay.DataAstronomyDayResponse
 
 class AstronomyDayResponseFactory {
 

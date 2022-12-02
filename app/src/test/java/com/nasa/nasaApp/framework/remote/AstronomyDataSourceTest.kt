@@ -5,6 +5,7 @@ import com.nasa.nasaApp.framework.network.NasaApi
 import com.nasa.testing.MainCoroutineRule
 import com.nasa.testing.model.AstronomyDayFactory
 import com.nasa.nasaApp.factory.response.AstronomyDayResponseFactory
+import com.nasa.nasaApp.framework.network.NasaApiAsteroids
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -25,6 +26,9 @@ class AstronomyDataSourceTest {
 
     @Mock
     lateinit var nasaApi: NasaApi
+    @Mock
+    lateinit var nasaApiAsteroids: NasaApiAsteroids
+
 
     private val astronomyDayResponse = AstronomyDayResponseFactory()
         .create(AstronomyDayResponseFactory.FakeDataAstronomyDayResponse.FakeDataAstronomyDayResponse1)
@@ -36,7 +40,7 @@ class AstronomyDataSourceTest {
 
     @Before
     fun setUp() {
-        astronomyRemoteDataSource = AstronomyDataSource(nasaApi)
+        astronomyRemoteDataSource = AstronomyDataSource(nasaApi,nasaApiAsteroids)
     }
 
     @Test
