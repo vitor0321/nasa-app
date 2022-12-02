@@ -40,7 +40,7 @@ android {
         }
 
         buildConfigField "String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY']
-        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/planetary/"'
+        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/"'
     }
 
     testOptions {
@@ -122,6 +122,8 @@ dependencies {
     //Firebase
     implementation platform(appDependencies.firebaseBom)
     implementation appDependencies.firebaseAnalytics
+
+    implementation appDependencies.moshi
 
     //Test
     testImplementation testDependencies.junit

@@ -23,6 +23,7 @@ import java.time.LocalDate
 class MainActivity : ComponentActivity() {
 
     private val viewModel: AstronomyViewModel by viewModels()
+    private val viewModelAsteroids: AsteroidsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +32,14 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun initObserver() {
+        viewModelAsteroids.state.observe(this){ uiState ->
+            uiState
+        }
         viewModel.state.observe(this) { uiSate ->
             initCompose(uiSate)
         }
         viewModel.fetchAstronomyDay()
+        viewModelAsteroids.fetchAsteroids(LocalDate.now())
     }
 
     private fun initCompose(uiSate: AstronomyViewModel.UiState) {

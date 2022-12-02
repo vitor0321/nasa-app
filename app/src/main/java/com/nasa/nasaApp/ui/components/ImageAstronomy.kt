@@ -23,10 +23,11 @@ fun ImageAstronomy(
             .fillMaxSize()
             .clickable {
                 onClickImage()
-            }
+            },
     ) {
         AsyncImage(
-            modifier = Modifier,
+            modifier = Modifier
+                .fillMaxSize(),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(astronomyDay.url)
                 .crossfade(true)

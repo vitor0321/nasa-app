@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nasa</string>
+    <string name="app_name">Voyager</string>
     <string name="loading">loading...</string>
     <string name="error">hummm... something wrong</string>
     <string name="astronomy_picture_of_day">Astronomy Picture of the Day</string>

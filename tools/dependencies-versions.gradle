@@ -15,6 +15,7 @@ extensions.versions = [
         composeActivityVersion   : "1.6.0",
         composeMaterial          : "1.0.0-beta01",
         gsonVersion              : "2.9.0",
+        moshiVersion             : "1.14.0",
         systemBarsUiController   : "0.24.9-beta",
         googleMaterial           : "1.6.1",
         detekt                   : "1.21.0",

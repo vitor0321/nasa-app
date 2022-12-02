@@ -5,14 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.nasa.core.model.AstronomyDay
 import com.nasa.core.usecase.FetchAstronomyDayUseCase
+import com.nasa.core.usecase.GetAsteroidsUseCase
 import com.nasa.core.usecase.GetAstronomyDayOfDateUseCase
 import com.nasa.core.usecase.base.CoroutinesDispatchers
 import com.nasa.nasaApp.ui.common.watchStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class AstronomyViewModel @Inject constructor(
@@ -43,7 +46,9 @@ class AstronomyViewModel @Inject constructor(
                         error = { emit(UiState.Error(it.message)) }
                     )
                 }
-                is Action.OpenCalendar -> { emit(UiState.OpenCalendar) }
+                is Action.OpenCalendar -> {
+                    emit(UiState.OpenCalendar)
+                }
             }
         }
     }

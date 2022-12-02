@@ -13,6 +13,7 @@ ext {
         lifecycleLivedata        : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion",
         composeActivity          : "androidx.activity:activity-compose:$versions.composeActivityVersion",
         gson                     : "com.google.code.gson:gson:$versions.gsonVersion",
+        moshi                    : "com.squareup.moshi:moshi:$versions.moshiVersion",
 
         // Material3
         materialGoogle           : "com.google.android.material:material:$versions.googleMaterial",
