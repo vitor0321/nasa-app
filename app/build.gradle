@@ -40,7 +40,7 @@ android {
         }
 
         buildConfigField "String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY']
-        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/planetary/"'
+        buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/"'
     }
 
     testOptions {
@@ -78,7 +78,7 @@ android {
         compose true
     }
     lint {
-        baseline = file("lint-baseline.xml")
+        abortOnError false
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.1.1'
@@ -95,7 +95,8 @@ dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def modules = rootProject.ext.modules
 
-    implementation project(modules.coreModule)
+    implementation project(modules.core)
+    testImplementation project(modules.testing)
 
     implementation appDependencies.core
     implementation appDependencies.lifecycle
@@ -122,12 +123,23 @@ dependencies {
     implementation platform(appDependencies.firebaseBom)
     implementation appDependencies.firebaseAnalytics
 
+    implementation appDependencies.moshi
+
     //Test
     testImplementation testDependencies.junit
+    testImplementation testDependencies.roomTesting
+    testImplementation testDependencies.navigationTest
+    testImplementation testDependencies.coreTestingVersion
     androidTestImplementation testDependencies.extJunit
     androidTestImplementation testDependencies.espresso
 
     androidTestImplementation testDependencies.composeJunit4
     debugImplementation testDependencies.composeTooling
     debugImplementation testDependencies.composeManifest
+
+    androidTestImplementation testDependencies.extJunit
+    androidTestImplementation testDependencies.espresso
+    androidTestImplementation testDependencies.runnerTest
+    androidTestImplementation testDependencies.hiltTest
+    androidTestImplementation testDependencies.hiltTestCompiler
 }

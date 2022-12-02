@@ -8,6 +8,9 @@ java {
 
 dependencies{
     def appDependencies = rootProject.ext.appDependencies
+    def modules = rootProject.ext.modules
+
+    testImplementation project(modules.testing)
 
     api(appDependencies.okhttp3Interceptor)
     api(platform(appDependencies.okhttp3))

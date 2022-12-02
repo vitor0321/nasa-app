@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:379581702235:android:d67ded8f0fd006a66d1f7e",
+        "mobilesdk_app_id": "1:379581702235:android:988887b44ea12e646d1f7e",
         "android_client_info": {
-          "package_name": "com.example.nasaApp"
+          "package_name": "com.nasa.nasaApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "379581702235-vdfm17a12199j18qpl8hi40oack9anod.apps.googleusercontent.com",
+          "client_id": "379581702235-p0q1ojr3s8jnbiiaqscah3dvcj0mdmsa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.nasaApp",
+            "package_name": "com.nasa.nasaApp",
             "certificate_hash": "3ce6258c429683856531da954409a1fadf72dd09"
           }
         },
@@ -44,17 +44,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:379581702235:android:7fc62b62f9ef50306d1f7e",
+        "mobilesdk_app_id": "1:379581702235:android:c3972deb525029d26d1f7e",
         "android_client_info": {
-          "package_name": "com.example.nasaApp.debug"
+          "package_name": "com.nasa.nasaApp.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "379581702235-to9k4qi56m5ahpginmqmnlea0v70nfnm.apps.googleusercontent.com",
+          "client_id": "379581702235-qev8fm76f2ovjhj38n8f00nieftdvgrk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.nasaApp.debug",
+            "package_name": "com.nasa.nasaApp.debug",
             "certificate_hash": "3ce6258c429683856531da954409a1fadf72dd09"
           }
         },
@@ -81,17 +81,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:379581702235:android:d73540df906c6c126d1f7e",
+        "mobilesdk_app_id": "1:379581702235:android:2907fd442c4f9d496d1f7e",
         "android_client_info": {
-          "package_name": "com.example.nasaApp.staging"
+          "package_name": "com.nasa.nasaApp.staging"
         }
       },
       "oauth_client": [
         {
-          "client_id": "379581702235-s4cqhgjf14qhm86bq1tomps99qtdpppk.apps.googleusercontent.com",
+          "client_id": "379581702235-mt921bmdpe3tp5ceta3co3i771e6hgg5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.nasaApp.staging",
+            "package_name": "com.nasa.nasaApp.staging",
             "certificate_hash": "3ce6258c429683856531da954409a1fadf72dd09"
           }
         },
