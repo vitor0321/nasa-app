@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.components
 
+import android.content.res.Configuration
 import android.view.ContextThemeWrapper
 import android.widget.CalendarView
 import androidx.compose.foundation.background
@@ -143,21 +144,11 @@ fun CustomCalendarView(
     )
 }
 
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 @Preview
 fun CalendarIndicatorLightPreview() {
-    NasaBasicTheme(useDarkTheme = false) {
-        CalendarIndicator(
-            onDateSelected = {},
-            onDismissRequest = {}
-        )
-    }
-}
-
-@Composable
-@Preview
-fun CalendarIndicatorDarkPreview() {
-    NasaBasicTheme(useDarkTheme = true) {
+    NasaBasicTheme {
         CalendarIndicator(
             onDateSelected = {},
             onDismissRequest = {}

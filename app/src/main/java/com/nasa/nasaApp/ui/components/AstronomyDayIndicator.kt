@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -123,30 +124,11 @@ fun AstronomyDayIndicator(
     }
 }
 
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 @Preview
 fun AstronomyDayIndicatorLightPreview() {
-    NasaBasicTheme(useDarkTheme = false) {
-        AstronomyDayIndicator(
-            astronomyDay = AstronomyDay(
-                copyright = "Yanninck Akar",
-                date = "10-10-2010",
-                explanation = "explanation",
-                hdurl = "https://apod.nasa.gov/apod/image/2210/Europa_JunoLuck_2611.jpg",
-                mediaType = "image",
-                title = "title",
-                url = "url"
-            ),
-            onClickImage = {},
-            onClickOpenCalendar = {}
-        )
-    }
-}
-
-@Composable
-@Preview
-fun AstronomyDayIndicatorDarkPreview() {
-    NasaBasicTheme(useDarkTheme = true) {
+    NasaBasicTheme {
         AstronomyDayIndicator(
             astronomyDay = AstronomyDay(
                 copyright = "Yanninck Akar",

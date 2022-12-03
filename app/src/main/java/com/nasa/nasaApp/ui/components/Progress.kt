@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.components
 
+import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -43,18 +44,11 @@ fun ProgressIndicator(
     }
 }
 
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 @Preview
 fun ProgressIndicatorLightPreview() {
-    NasaBasicTheme(useDarkTheme = false) {
-        ProgressIndicator()
-    }
-}
-
-@Composable
-@Preview
-fun ProgressIndicatorDarkPreview() {
-    NasaBasicTheme(useDarkTheme = true) {
+    NasaBasicTheme {
         ProgressIndicator()
     }
 }

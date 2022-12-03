@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.components
 
+import android.content.res.Configuration
 import android.os.Build
 import android.text.SpannableString
 import android.text.style.URLSpan
@@ -25,7 +26,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
+import com.nasa.nasaApp.ui.theme.NasaBasicTheme
 
 @Composable
 fun LinkifyText(
@@ -221,5 +224,14 @@ private class SpannableStr(source: CharSequence) : SpannableString(source) {
     override fun setSpan(what: Any?, start: Int, end: Int, flags: Int) {
         super.setSpan(what, start, end, flags)
         spanList.add(Data(what, start, end))
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+@Preview
+fun LinkifyTextPreview() {
+    NasaBasicTheme {
+        LinkifyText(text = "https://apod.nasa.gov/apod/image/2212/Mars-Stereo.png")
     }
 }

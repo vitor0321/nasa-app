@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.components
 
+import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -52,18 +53,11 @@ fun ErrorIndicator(
     }
 }
 
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 @Preview
 fun ErrorIndicatorLightPreview() {
-    NasaBasicTheme(useDarkTheme = false) {
-        ErrorIndicator(null)
-    }
-}
-
-@Composable
-@Preview
-fun ErrorIndicatorDarkPreview() {
-    NasaBasicTheme(useDarkTheme = true) {
+    NasaBasicTheme {
         ErrorIndicator(null)
     }
 }
