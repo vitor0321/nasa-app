@@ -5,46 +5,47 @@ ext {
         core                     : ":core",
         testing                  : ":testing"
     ]
-
     appDependencies = [
-        core                     : "androidx.core:core-ktx:$versions.coreVersion",
-        lifecycle                : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion",
-        lifecycleViewmodel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion",
-        lifecycleLivedata        : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion",
-        composeActivity          : "androidx.activity:activity-compose:$versions.composeActivityVersion",
-        gson                     : "com.google.code.gson:gson:$versions.gsonVersion",
-        moshi                    : "com.squareup.moshi:moshi:$versions.moshiVersion",
+            core                     : "androidx.core:core-ktx:$versions.coreVersion",
+            lifecycle                : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion",
+            lifecycleViewmodel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion",
+            lifecycleLivedata        : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion",
+            composeActivity          : "androidx.activity:activity-compose:$versions.composeActivityVersion",
+            gson                     : "com.google.code.gson:gson:$versions.gsonVersion",
+            moshi                    : "com.squareup.moshi:moshi:$versions.moshiVersion",
 
-        // Material3
-        materialGoogle           : "com.google.android.material:material:$versions.googleMaterial",
-        composeUi                : "androidx.compose.ui:ui:$versions.composeVersion",
-        composeCoil              : "io.coil-kt:coil-compose:$versions.composeCoilVersion",
-        composeMaterial3         : "androidx.compose.material3:material3:$versions.composeMaterial",
-        composeUiTooling         : "androidx.compose.ui:ui-tooling-preview:$versions.composeVersion",
-        // Material3 - Status bar
-        systemUiController       : "com.google.accompanist:accompanist-systemuicontroller:$versions.systemBarsUiController",
+            // Compose
+            composeUi                : "androidx.compose.ui:ui:$versions.composeVersion",
+            composeCoil              : "io.coil-kt:coil-compose:$versions.composeCoilVersion",
+            composeMaterial3         : "androidx.compose.material3:material3:$versions.composeMaterial",
+            composeUiTooling         : "androidx.compose.ui:ui-tooling-preview:$versions.composeVersion",
 
-        //Hilt
-        hiltAndroid              : "com.google.dagger:hilt-android:$versions.hilt",
-        hiltCompiler             : "com.google.dagger:hilt-android-compiler:$versions.hilt",
-        hiltCompilerAndroidx     : "androidx.hilt:hilt-compiler:$versions.hiltCompAndroidx",
-        hiltPlugin               : "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt",
+            // Material3
+            materialGoogle           : "com.google.android.material:material:$versions.googleMaterial",
+            systemUiController       : "com.google.accompanist:accompanist-systemuicontroller:$versions.systemBarsUiController",
 
-        // Firebase
-        googleServices           : "com.google.gms:google-services:$versions.firebaseGoogle",
-        firebaseBom              : "com.google.firebase:firebase-bom:$versions.firebaseBom",
-        firebaseAnalytics        : "com.google.firebase:firebase-analytics-ktx",
+            //Hilt
+            hiltAndroid              : "com.google.dagger:hilt-android:$versions.hilt",
+            hiltCompiler             : "com.google.dagger:hilt-android-compiler:$versions.hilt",
+            hiltCompilerAndroidx     : "androidx.hilt:hilt-compiler:$versions.hiltCompAndroidx",
+            hiltPlugin               : "com.google.dagger:hilt-android-gradle-plugin:$versions.hilt",
 
-        javaxDep                 : "javax.inject:javax.inject:$versions.javaxVersion",
-        coroutinesCore           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines",
-        retrofit                 : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
-        retrofitConverter        : "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion",
-        okhttp3                  : "com.squareup.okhttp3:okhttp-bom:$versions.okhttp3Version",
-        okhttp3Ok                : "com.squareup.okhttp3:okhttp",
-        okhttp3Interceptor       : "com.squareup.okhttp3:logging-interceptor",
+            // Firebase
+            googleServices           : "com.google.gms:google-services:$versions.firebaseGoogle",
+            firebaseBom              : "com.google.firebase:firebase-bom:$versions.firebaseBom",
+            firebaseAnalytics        : "com.google.firebase:firebase-analytics-ktx",
 
-        exoplayer                : "com.google.android.exoplayer:exoplayer:$versions.exoplayer",
+            javaxDep                 : "javax.inject:javax.inject:$versions.javaxVersion",
+            coroutinesCore           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines",
+            retrofit                 : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
+            retrofitConverter        : "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion",
+            okhttp3                  : "com.squareup.okhttp3:okhttp-bom:$versions.okhttp3Version",
+            okhttp3Ok                : "com.squareup.okhttp3:okhttp",
+            okhttp3Interceptor       : "com.squareup.okhttp3:logging-interceptor",
+
+            exoplayer                : "com.google.android.exoplayer:exoplayer:$versions.exoplayer",
     ]
+
 
     testDependencies = [
         junit                    : "junit:junit:$versions.junitVersion",

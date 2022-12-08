@@ -17,6 +17,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.mapSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -41,6 +43,18 @@ fun AstronomyDayIndicator(
     val date: Date =
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(astronomyDay.date) as Date
     val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date)
+
+    val state = rememberSaveable(saver = AstronomyStateSaver) {
+        AstronomyDay(
+            copyright = astronomyDay.copyright,
+            date = astronomyDay.date,
+            explanation = astronomyDay.explanation,
+            hdurl = astronomyDay.hdurl,
+            mediaType = astronomyDay.mediaType,
+            title = astronomyDay.title,
+            url = astronomyDay.url
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -93,35 +107,70 @@ fun AstronomyDayIndicator(
             Spacer(modifier = Modifier.padding(top = 12.dp))
             Text(
                 modifier = modifier.padding(10.dp),
-                text = astronomyDay.title,
+                text = state.title,
                 textAlign = TextAlign.Center,
                 style = AppDefaultTypography.titleMedium
             )
-            when (astronomyDay.mediaType) {
-                Constant.IMAGE -> ImageAstronomy(astronomyDay = astronomyDay, onClickImage)
+            when (state.mediaType) {
+                Constant.IMAGE -> ImageAstronomy(astronomyDay = state, onClickImage)
                 Constant.VIDEO -> {
                     Row {
                         Text(text = stringResource(R.string.video) + " ")
-                        LinkifyText(text = astronomyDay.url)
+                        LinkifyText(text = state.url)
                     }
                 }
             }
-            if (astronomyDay.copyright != null) {
+            if (state.copyright != null) {
                 Text(
                     modifier = modifier,
-                    text = stringResource(R.string.copyright) + " " + astronomyDay.copyright!!,
+                    text = stringResource(R.string.copyright) + " " + state.copyright!!,
                     style = AppDefaultTypography.bodySmall
                 )
             }
             Spacer(modifier = Modifier.padding(top = 12.dp))
             Text(
                 modifier = modifier.padding(8.dp),
-                text = astronomyDay.explanation,
+                text = state.explanation,
                 style = AppDefaultTypography.bodyLarge
             )
             Spacer(modifier = Modifier.padding(bottom = 12.dp))
         }
     }
+}
+
+private val AstronomyStateSaver = run {
+    val copyright = "copyright"
+    val date = "date"
+    val explanation = "explanation"
+    val hdurl = "hdurl"
+    val mediaType = "mediaType"
+    val title = "title"
+    val url = "url"
+
+    mapSaver(
+        save = { state: AstronomyDay ->
+            mapOf(
+                copyright to state.copyright,
+                date to state.date,
+                explanation to state.explanation,
+                hdurl to state.hdurl,
+                mediaType to state.mediaType,
+                title to state.title,
+                url to state.url
+            )
+        },
+        restore = { restorarionMap: Map<String, Any?> ->
+            AstronomyDay(
+                copyright = restorarionMap[copyright] as String?,
+                date = restorarionMap[date] as String,
+                explanation = restorarionMap[explanation] as String,
+                hdurl = restorarionMap[hdurl] as String?,
+                mediaType = restorarionMap[mediaType] as String,
+                title = restorarionMap[title] as String,
+                url = restorarionMap[url] as String,
+            )
+        }
+    )
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)

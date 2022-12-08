@@ -1,5 +1,6 @@
 package com.nasa.nasaApp.ui.presentation
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -54,9 +55,7 @@ class MainActivity : ComponentActivity() {
                         is AstronomyViewModel.UiState.Success -> {
                             AstronomyDay(
                                 astronomyDay = uiSate.astronomyDay,
-                                onClickImage = {
-
-                                },
+                                onClickImage = {},
                                 onClickOpenCalendar = { viewModel.openCalendar() }
                             )
                         }
@@ -114,26 +113,20 @@ fun Calendar(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
+@Preview
 fun LoadingLightPreview() {
-    NasaBasicTheme(isDynamic = false) {
+    NasaBasicTheme {
         Loading()
     }
 }
 
-@Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun LoadingDarkPreview() {
-    NasaBasicTheme(isDynamic = true) {
-        Loading()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
+@Preview
 fun AstronomyDayDarkPreview() {
-    NasaBasicTheme(useDarkTheme = true) {
+    NasaBasicTheme {
         AstronomyDay(
             AstronomyDay(
                 copyright = null,
@@ -150,38 +143,11 @@ fun AstronomyDayDarkPreview() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun AstronomyDayLightPreview() {
-    NasaBasicTheme(isDynamic = false) {
-        AstronomyDay(
-            AstronomyDay(
-                copyright = null,
-                date = "10-10-2010",
-                explanation = "explanation",
-                hdurl = null,
-                mediaType = "image",
-                title = "title",
-                url = "url"
-            ),
-            onClickImage = {},
-            onClickOpenCalendar = { }
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ErrorLightPreview() {
-    NasaBasicTheme(isDynamic = false) {
-        Error()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
+@Preview
 fun ErrorDarkPreview() {
-    NasaBasicTheme(isDynamic = true) {
-        Error()
+    NasaBasicTheme {
+        ErrorIndicator(null)
     }
 }

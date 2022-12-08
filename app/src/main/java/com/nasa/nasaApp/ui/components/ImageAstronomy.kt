@@ -18,7 +18,8 @@ import com.nasa.nasa_app.R
 
 @Composable
 fun ImageAstronomy(
-    astronomyDay: AstronomyDay, onClickImage: () -> Unit
+    astronomyDay: AstronomyDay,
+    onClickImage: () -> Unit
 ) {
     Box(
         modifier = Modifier
