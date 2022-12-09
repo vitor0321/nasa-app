@@ -1,6 +1,7 @@
 package com.nasa.nasaApp.ui.components
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ fun ErrorIndicator(
     modifier: Modifier = Modifier,
     @StringRes errorTextId: Int = R.string.error,
 ) {
+    Log.i("throwable", throwable.toString())
     Column(
         modifier = Modifier
             .fillMaxWidth()

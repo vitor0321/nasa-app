@@ -19,6 +19,7 @@ ext {
             composeCoil              : "io.coil-kt:coil-compose:$versions.composeCoilVersion",
             composeMaterial3         : "androidx.compose.material3:material3:$versions.composeMaterial",
             composeUiTooling         : "androidx.compose.ui:ui-tooling-preview:$versions.composeVersion",
+            shimmer                  : "com.valentinilk.shimmer:compose-shimmer:$versions.shimmerVersion",
 
             // Material3
             materialGoogle           : "com.google.android.material:material:$versions.googleMaterial",

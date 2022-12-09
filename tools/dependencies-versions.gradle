@@ -4,9 +4,8 @@ extensions.versions = [
         compileSdk               : 33,
         minSdk                   : 26,
         targetSdk                : 33,
-        versionCode              : 3,
-        versionName              : "1.0.2",
-
+        versionCode              : 5,
+        versionName              : "1.0.3",
         coreVersion              : "1.9.0",
         kotlinxCoroutines        : "1.6.4",
         lifecycleVersion         : "2.5.1",
@@ -29,6 +28,7 @@ extensions.versions = [
         firebaseGoogle           : "4.3.14",
         firebaseBom              : "31.0.0",
         roomVersion              : "2.4.3",
+        shimmerVersion           : "1.0.3",
 
         //Test
         junitVersion             : "4.13.2",

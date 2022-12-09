@@ -15,7 +15,7 @@ import com.nasa.core.model.AstronomyDay
 import com.nasa.nasaApp.ui.components.AstronomyDayIndicator
 import com.nasa.nasaApp.ui.components.CalendarIndicator
 import com.nasa.nasaApp.ui.components.ErrorIndicator
-import com.nasa.nasaApp.ui.components.ProgressIndicator
+import com.nasa.nasaApp.ui.components.ShimmerAstronomyDay
 import com.nasa.nasaApp.ui.theme.NasaBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -74,7 +74,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Loading() {
     NasaBasicTheme {
-        ProgressIndicator()
+        ShimmerAstronomyDay()
     }
 }
 

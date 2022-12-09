@@ -111,6 +111,7 @@ dependencies {
     implementation appDependencies.composeUiTooling
     implementation appDependencies.systemUiController
     implementation appDependencies.composeCoil
+    implementation appDependencies.shimmer
 
     implementation appDependencies.exoplayer
 
