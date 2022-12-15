@@ -1,4 +1,4 @@
-package com.nasa.nasaApp.ui.components
+package com.nasa.nasaApp.ui.components.astronomyDay
 
 import android.content.res.Configuration
 import androidx.compose.foundation.ScrollState
@@ -37,7 +37,6 @@ import java.util.*
 fun AstronomyDayIndicator(
     modifier: Modifier = Modifier,
     astronomyDay: AstronomyDay,
-    onClickImage: () -> Unit,
     onClickOpenCalendar: () -> Unit
 ) {
     val date: Date =
@@ -112,7 +111,7 @@ fun AstronomyDayIndicator(
                 style = AppDefaultTypography.titleMedium
             )
             when (state.mediaType) {
-                Constant.IMAGE -> ImageAstronomy(astronomyDay = state, onClickImage)
+                Constant.IMAGE -> ImageAstronomy(state.url, R.string.astronomy_picture_of_day)
                 Constant.VIDEO -> {
                     Row {
                         Text(text = stringResource(R.string.video) + " ")
@@ -188,7 +187,6 @@ fun AstronomyDayIndicatorLightPreview() {
                 title = "title",
                 url = "url"
             ),
-            onClickImage = {},
             onClickOpenCalendar = {}
         )
     }

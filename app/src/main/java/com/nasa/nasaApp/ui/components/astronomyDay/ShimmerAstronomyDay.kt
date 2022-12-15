@@ -1,30 +1,20 @@
-package com.nasa.nasaApp.ui.components
+package com.nasa.nasaApp.ui.components.astronomyDay
 
 import android.content.res.Configuration
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.InspectableModifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nasa.nasaApp.ui.theme.AppDefaultTypography
 import com.nasa.nasaApp.ui.theme.NasaBasicTheme
-import com.nasa.nasa_app.R
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
@@ -32,13 +22,7 @@ import com.valentinilk.shimmer.shimmer
 @Composable
 fun ShimmerAstronomyDay() {
     val shimmerInstance = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-            .background(MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Column{
         Spacer(modifier = Modifier.padding(top = 18.dp, end = 70.dp, start = 70.dp).height(18.dp).fillMaxWidth().shimmer(shimmerInstance).background(color = Color.Gray))
 
         Spacer(modifier = Modifier.padding(top = 4.dp, end = 30.dp, start = 30.dp).height(12.dp).fillMaxWidth().shimmer(shimmerInstance).background(color = Color.Gray))
@@ -82,7 +66,7 @@ fun ShimmerAstronomyDay() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 @Preview
-fun ProgressIndicatorLightPreview() {
+fun ShimmerAstronomyDayPreview() {
     NasaBasicTheme {
         ShimmerAstronomyDay()
     }

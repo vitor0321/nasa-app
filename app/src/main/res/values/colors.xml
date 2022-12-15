@@ -63,6 +63,7 @@
     <!--  Custom colors for extended corporate identity (day e night) -->
     <color name="blue_deep_ocean">#2C75F3</color>
     <color name="white_snow">#FFFFFFFF</color>
+    <color name="mars">#FB9806</color>
     <color name="blue_lake">#024377</color>
     <color name="red_error">#870101</color>
     <color name="blue_sky">#03A9F4</color>

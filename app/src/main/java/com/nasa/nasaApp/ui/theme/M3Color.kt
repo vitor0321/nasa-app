@@ -76,6 +76,7 @@ val DarkThemeColors: ColorScheme
  */
 @Immutable
 data class ExtendedColors(
+    val mars: Color,
     val snowWhite: Color,
     val deepOcean: Color,
     val skyBlue: Color,
@@ -86,6 +87,7 @@ data class ExtendedColors(
 // cores que serão usados de acordo com a modalidade dia ou noite
 val LocalExtendedColors = staticCompositionLocalOf {
     ExtendedColors(
+        mars= Color.Unspecified,
         snowWhite = Color.Unspecified,
         deepOcean = Color.Unspecified,
         skyBlue = Color.Unspecified,
@@ -98,6 +100,7 @@ val LocalExtendedColors = staticCompositionLocalOf {
 val lightExtendedColors: ExtendedColors
     @Composable
     get() = ExtendedColors(
+        mars= colorResource(id = R.color.mars),
         snowWhite = colorResource(id = R.color.white_snow),
         deepOcean = colorResource(id = R.color.blue_deep_ocean),
         skyBlue = colorResource(id = R.color.blue_sky),
@@ -109,6 +112,7 @@ val lightExtendedColors: ExtendedColors
 val darkExtendedColors: ExtendedColors
     @Composable
     get() = ExtendedColors(
+        mars= colorResource(id = R.color.mars),
         snowWhite = colorResource(id = R.color.white_snow),
         deepOcean = colorResource(id = R.color.black_inverted_mode),
         skyBlue = colorResource(id = R.color.blue_sky),

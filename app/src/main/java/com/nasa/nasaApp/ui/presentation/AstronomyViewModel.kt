@@ -46,9 +46,6 @@ class AstronomyViewModel @Inject constructor(
                         error = { emit(UiState.Error(it.message)) }
                     )
                 }
-                is Action.OpenCalendar -> {
-                    emit(UiState.OpenCalendar)
-                }
             }
         }
     }
@@ -61,20 +58,14 @@ class AstronomyViewModel @Inject constructor(
         action.value = Action.GetAstronomyDayOfDate(date)
     }
 
-    fun openCalendar() {
-        action.value = Action.OpenCalendar
-    }
-
     sealed class UiState {
         data class Success(val astronomyDay: AstronomyDay) : UiState()
         data class Error(val throwable: String?) : UiState()
         object Loading : UiState()
-        object OpenCalendar : UiState()
     }
 
     sealed class Action {
         data class GetAstronomyDayOfDate(val date: LocalDate) : Action()
         object FetchAstronomyDay : Action()
-        object OpenCalendar : Action()
     }
 }

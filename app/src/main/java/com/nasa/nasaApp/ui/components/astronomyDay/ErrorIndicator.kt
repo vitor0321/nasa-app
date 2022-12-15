@@ -1,4 +1,4 @@
-package com.nasa.nasaApp.ui.components
+package com.nasa.nasaApp.ui.components.astronomyDay
 
 import android.content.res.Configuration
 import android.util.Log
