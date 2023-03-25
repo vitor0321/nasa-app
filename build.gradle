@@ -1,26 +1,19 @@
 buildscript {
-    apply from: "$rootDir/tools/dependencies.gradle"
-
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        def appDependencies = rootProject.ext.appDependencies
-
-        classpath appDependencies.hiltPlugin
-        classpath appDependencies.googleServices
+        classpath libs.hilt.plugin
+        classpath libs.google.services
     }
 }
 
 plugins {
-    id 'io.gitlab.arturbosch.detekt' version '1.21.0'
-    id 'com.android.application' version '7.3.0' apply false
-    id 'com.android.library' version '7.3.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10' apply false
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.application) apply false
+    alias(libs.plugins.library) apply false
+    alias(libs.plugins.kotlin) apply false
+    alias(libs.plugins.jvm) apply false
+    alias(libs.plugins.hilt) apply false
 }

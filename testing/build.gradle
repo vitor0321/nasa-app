@@ -9,13 +9,11 @@ java {
 }
 
 dependencies {
-    def testDependencies = rootProject.ext.testDependencies
-    def modules = rootProject.ext.modules
 
-    implementation project(modules.core)
+    implementation project(":domain")
 
-    api testDependencies.kotlinxCoroutinesTest
-    api testDependencies.coreTestingVersion
-    api testDependencies.mockitoVersion
-    api testDependencies.junit
+    api libs.kotlinx.coroutines.test
+    api libs.core.testing
+    api libs.mockito.version
+    api libs.junit
 }

@@ -4,8 +4,6 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.google.gms.google-services'
 
-apply from: "$rootDir/config/detekt/detekt.gradle"
-
 def storeKeyPropertiesFile = rootProject.file("storeKey.properties")
 def storeKeyProperties = new Properties()
 storeKeyProperties.load(new FileInputStream(storeKeyPropertiesFile))
@@ -15,8 +13,8 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    namespace rootProject.versions.namespace
-    compileSdk rootProject.versions.compileSdk
+    namespace "com.nasa.nasa_app"
+    compileSdk 33
 
     signingConfigs {
         release {
@@ -28,11 +26,11 @@ android {
     }
 
     defaultConfig {
-        applicationId rootProject.versions.applicationId
-        minSdk rootProject.versions.minSdk
-        targetSdk rootProject.versions.targetSdk
-        versionCode rootProject.versions.versionCode
-        versionName rootProject.versions.versionName
+        applicationId "com.nasa.nasaApp"
+        minSdk 26
+        targetSdk 33
+        versionCode 3
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -84,62 +82,29 @@ android {
         kotlinCompilerExtensionVersion '1.1.1'
     }
     packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
+        resources.excludes.add("META-INF/*")
     }
 }
 
 dependencies {
-    def testDependencies = rootProject.ext.testDependencies
-    def appDependencies = rootProject.ext.appDependencies
-    def modules = rootProject.ext.modules
+    implementation project(":domain")
+    testImplementation project(":testing")
 
-    implementation project(modules.core)
-    testImplementation project(modules.testing)
-
-    implementation appDependencies.core
-    implementation appDependencies.lifecycle
-    implementation appDependencies.lifecycleLivedata
-    implementation appDependencies.lifecycleViewmodel
-    implementation appDependencies.composeActivity
+    implementation libs.bundles.app.android
 
     //Compose
-    implementation appDependencies.materialGoogle
-    implementation appDependencies.composeUi
-    implementation appDependencies.composeMaterial3
-    implementation appDependencies.composeUiTooling
-    implementation appDependencies.systemUiController
-    implementation appDependencies.composeCoil
-
-    implementation appDependencies.exoplayer
+    implementation libs.bundles.app.compose
 
     //Hilt
-    implementation appDependencies.hiltAndroid
-    kapt appDependencies.hiltCompiler
-    kapt appDependencies.hiltCompilerAndroidx
+    implementation libs.hilt.android
+    kapt libs.hilt.android.compiler
 
     //Firebase
-    implementation platform(appDependencies.firebaseBom)
-    implementation appDependencies.firebaseAnalytics
+    implementation libs.firebase.bom
+//    implementation libs.firebase.analytics
 
-    implementation appDependencies.moshi
+    implementation libs.moshi
 
     //Test
-    testImplementation testDependencies.junit
-    testImplementation testDependencies.roomTesting
-    testImplementation testDependencies.navigationTest
-    testImplementation testDependencies.coreTestingVersion
-    androidTestImplementation testDependencies.extJunit
-    androidTestImplementation testDependencies.espresso
-
-    androidTestImplementation testDependencies.composeJunit4
-    debugImplementation testDependencies.composeTooling
-    debugImplementation testDependencies.composeManifest
-
-    androidTestImplementation testDependencies.extJunit
-    androidTestImplementation testDependencies.espresso
-    androidTestImplementation testDependencies.runnerTest
-    androidTestImplementation testDependencies.hiltTest
-    androidTestImplementation testDependencies.hiltTestCompiler
+    implementation libs.bundles.app.test
 }

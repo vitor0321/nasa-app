@@ -49,6 +49,13 @@ fun ErrorIndicator(
             text = stringResource(id = errorTextId),
             style = AppDefaultTypography.titleLarge
         )
+        throwable?.let {
+            Text(
+                modifier = modifier,
+                text = it,
+                style = AppDefaultTypography.titleLarge
+            )
+        }
         Spacer(modifier = Modifier.padding(bottom = 12.dp))
     }
 }
