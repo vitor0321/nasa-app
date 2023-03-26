@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Nasa"
         tools:targetApi="31">
         <activity
-            android:name="com.nasa.nasaApp.ui.presentation.MainActivity"
+            android:name="com.nasa.nasaApp.view.presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nasa">
