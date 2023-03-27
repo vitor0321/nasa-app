@@ -1,0 +1,57 @@
+package com.nasa.nasaApp.view.steps
+
+import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.coroutineScope
+import com.nasa.nasaApp.domain.data.CoroutinesDispatchers
+import com.nasa.nasaApp.domain.AstronomyDataSource
+import com.nasa.nasaApp.domain.model.AstronomyDay
+import kotlinx.coroutines.launch
+import java.io.IOException
+import java.time.LocalDate
+import javax.inject.Inject
+
+internal class AstronomyViewModel @Inject constructor(
+    private val astronomyDataSource: AstronomyDataSource,
+    private val coroutinesDispatchers: CoroutinesDispatchers,
+) : StateScreenModel<AstronomyViewModel.UiState>(UiState.Loading) {
+
+    init {
+        getAstronomyDay()
+    }
+
+    fun getAstronomyDay() {
+        coroutineScope.launch(coroutinesDispatchers.io()) {
+            try {
+                astronomyDataSource.getAstronomyDay()?.let {
+                    mutableState.value = UiState.Success(it)
+                }
+            } catch (error: IOException) {
+                mutableState.value = UiState.Error(error)
+            }
+        }
+    }
+
+    fun getAstronomyDayOfDate(date: LocalDate) {
+        coroutineScope.launch(coroutinesDispatchers.io()) {
+            try {
+                val dateToString = "${date.year}-${date.monthValue}-${date.dayOfMonth}"
+                astronomyDataSource.getAstronomyDayOfDate(dateToString)?.let {
+                    mutableState.value = UiState.Success(it)
+                }
+            } catch (error: IOException) {
+                mutableState.value = UiState.Error(error)
+            }
+        }
+    }
+
+    fun openCalendar() {
+        mutableState.value = UiState.OpenCalendar
+    }
+
+    sealed class UiState {
+        data class Success(val astronomyDay: AstronomyDay) : UiState()
+        data class Error(val exception: IOException?) : UiState()
+        object Loading : UiState()
+        object OpenCalendar : UiState()
+    }
+}
