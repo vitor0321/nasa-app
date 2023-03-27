@@ -1,8 +1,6 @@
 package com.nasa.nasaApp.domain.model
 
-import com.nasa.nasaApp.domain.model.AstronomyDay
-
-class AstronomyDayFactory {
+internal class AstronomyDayFactory {
 
     fun create(astronomyDay: FakeAstronomyDay) = when (astronomyDay) {
         FakeAstronomyDay.FakeAstronomyDay1 -> AstronomyDay(

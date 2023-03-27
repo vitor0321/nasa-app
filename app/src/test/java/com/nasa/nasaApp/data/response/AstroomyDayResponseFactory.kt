@@ -2,7 +2,7 @@ package com.nasa.nasaApp.data.response
 
 import com.nasa.nasaApp.data.models.astronomyDay.DataAstronomyDayResponse
 
-class AstronomyDayResponseFactory {
+internal class AstronomyDayResponseFactory {
 
     fun create(astronomyDay: FakeDataAstronomyDayResponse) = when (astronomyDay) {
         FakeDataAstronomyDayResponse.FakeDataAstronomyDayResponse1 -> DataAstronomyDayResponse(

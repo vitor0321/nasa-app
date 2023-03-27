@@ -37,15 +37,17 @@ internal object ResponseMapper {
         )
     }
 
-    fun mapToDomain(response: DataAstronomyDayResponse) = with(response) {
-        AstronomyDay(
-            copyright = copyright,
-            date = date,
-            explanation = explanation,
-            hdurl = hdurl,
-            mediaType = media_type,
-            title = title,
-            url = url
-        )
+    fun mapToDomain(response: DataAstronomyDayResponse?) = with(response) {
+        this?.let {
+            AstronomyDay(
+                copyright = copyright,
+                date = date,
+                explanation = explanation,
+                hdurl = hdurl,
+                mediaType = media_type,
+                title = title,
+                url = url
+            )
+        }
     }
 }

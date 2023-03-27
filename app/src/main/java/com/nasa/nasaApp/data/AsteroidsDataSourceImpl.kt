@@ -22,7 +22,11 @@ internal class AsteroidsDataSourceImpl(
     private val okHttpClient: OkHttpClient,
 ) : AsteroidsDataSource {
 
-    override suspend fun getAsteroids(date: LocalDate, okHttpCallbacks: (List<Asteroids>) -> Unit) {
+    override suspend fun getAsteroids(
+        date: LocalDate,
+        okHttpCallError: (IOException) -> Unit,
+        okHttpCallbacks: (List<Asteroids>) -> Unit,
+    ) {
         val asteroidsList = mutableListOf<Asteroids>()
 
         val formatters: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -53,7 +57,7 @@ internal class AsteroidsDataSourceImpl(
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                okHttpCallbacks
+                okHttpCallError(e)
             }
         })
     }

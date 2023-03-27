@@ -15,15 +15,21 @@ internal class AsteroidsViewModel(
 ) : StateScreenModel<AsteroidsViewModel.UiState>(UiState.Loading) {
 
     init {
-        fetchAsteroids(LocalDate.now())
+        getAsteroids(LocalDate.now())
     }
 
-    private fun fetchAsteroids(date: LocalDate) {
+    private fun getAsteroids(date: LocalDate) {
         coroutineScope.launch(coroutinesDispatchers.io()) {
             try {
-                asteroidsDataSource.getAsteroids(date) {
-                    mutableState.value = UiState.Success(it)
-                }
+                asteroidsDataSource.getAsteroids(
+                    date = date,
+                    okHttpCallError = {
+                        mutableState.value = UiState.Error(it)
+                    },
+                    okHttpCallbacks = {
+                        mutableState.value = UiState.Success(it)
+                    }
+                )
             } catch (error: IOException) {
                 mutableState.value = UiState.Error(error)
             }

@@ -12,7 +12,7 @@ import org.kodein.di.singleton
 val repositoryModule = DI.Module("repositoryModule") {
 
     bind<AstronomyDataSource>() with singleton {
-        AstronomyDataSourceImpl(instance(), instance())
+        AstronomyDataSourceImpl(instance())
     }
 
     bind<AsteroidsDataSource>() with singleton {

@@ -16,13 +16,15 @@ internal class AstronomyViewModel @Inject constructor(
 ) : StateScreenModel<AstronomyViewModel.UiState>(UiState.Loading) {
 
     init {
-        fetchAstronomyDay()
+        getAstronomyDay()
     }
 
-    private fun fetchAstronomyDay() {
+    fun getAstronomyDay() {
         coroutineScope.launch(coroutinesDispatchers.io()) {
             try {
-                mutableState.value = UiState.Success(astronomyDataSource.getAstronomyDay())
+                astronomyDataSource.getAstronomyDay()?.let {
+                    mutableState.value = UiState.Success(it)
+                }
             } catch (error: IOException) {
                 mutableState.value = UiState.Error(error)
             }
@@ -33,9 +35,9 @@ internal class AstronomyViewModel @Inject constructor(
         coroutineScope.launch(coroutinesDispatchers.io()) {
             try {
                 val dateToString = "${date.year}-${date.monthValue}-${date.dayOfMonth}"
-                mutableState.value = UiState.Success(
-                    astronomyDataSource.getAstronomyDayOfDate(dateToString)
-                )
+                astronomyDataSource.getAstronomyDayOfDate(dateToString)?.let {
+                    mutableState.value = UiState.Success(it)
+                }
             } catch (error: IOException) {
                 mutableState.value = UiState.Error(error)
             }
