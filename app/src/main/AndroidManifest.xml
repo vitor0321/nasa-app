@@ -12,14 +12,14 @@
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_voyager"
-        android:label="@string/app_name"
+        android:label="Voyager"
         android:roundIcon="@mipmap/ic_voyager_round"
         android:supportsRtl="true"
         android:name="com.nasa.nasaApp.NasaApp"
         android:theme="@style/Theme.Nasa"
         tools:targetApi="31">
         <activity
-            android:name="com.nasa.nasaApp.view.presentation.MainActivity"
+            android:name="com.nasa.nasaApp.view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nasa">

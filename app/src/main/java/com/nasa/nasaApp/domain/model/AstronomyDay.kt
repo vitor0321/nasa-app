@@ -1,6 +1,6 @@
 package com.nasa.nasaApp.domain.model
 
-data class AstronomyDay(
+internal data class AstronomyDay(
     val copyright: String?,
     val date: String,
     val explanation: String,

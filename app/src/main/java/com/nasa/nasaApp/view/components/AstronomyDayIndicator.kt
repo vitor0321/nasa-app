@@ -21,26 +21,27 @@ import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.nasa.nasaApp.domain.constants.Constant
 import com.nasa.nasaApp.domain.model.AstronomyDay
-import com.nasa.nasaApp.view.common.Constant
-import com.nasa.nasaApp.view.theme.AppDefaultTypography
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
-import com.nasa.nasa_app.R
+import com.nasa.nasaApp.view.resource.LocalStrings
+import com.nasa.nasaApp.view.resource.theme.AppDefaultTypography
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 @Composable
-fun AstronomyDayIndicator(
+internal fun AstronomyDayIndicator(
     modifier: Modifier = Modifier,
     astronomyDay: AstronomyDay,
     onClickImage: () -> Unit,
     onClickOpenCalendar: () -> Unit
 ) {
+    val strings = LocalStrings.current.components
+
     val date: Date =
         SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(astronomyDay.date) as Date
     val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date)
@@ -68,13 +69,13 @@ fun AstronomyDayIndicator(
         Text(
             modifier = modifier,
             textAlign = TextAlign.Center,
-            text = stringResource(id = R.string.astronomy_picture_of_day),
+            text = strings.astronomyPictureOfDay,
             style = AppDefaultTypography.titleLarge
         )
         Text(
             modifier = modifier,
             textAlign = TextAlign.Center,
-            text = stringResource(id = R.string.discover_the_cosmos),
+            text = strings.discoverTheCosmos,
             style = AppDefaultTypography.bodyMedium
         )
         Spacer(modifier = Modifier.padding(top = 6.dp))
@@ -116,7 +117,7 @@ fun AstronomyDayIndicator(
                 Constant.IMAGE -> ImageAstronomy(astronomyDay = state, onClickImage)
                 Constant.VIDEO -> {
                     Row {
-                        Text(text = stringResource(R.string.video) + " ")
+                        Text(text = strings.video)
                         LinkifyText(text = state.url)
                     }
                 }
@@ -124,7 +125,7 @@ fun AstronomyDayIndicator(
             if (state.copyright != null) {
                 Text(
                     modifier = modifier,
-                    text = stringResource(R.string.copyright) + " " + state.copyright!!,
+                    text = strings.copyright + " " + state.copyright,
                     style = AppDefaultTypography.bodySmall
                 )
             }

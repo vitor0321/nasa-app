@@ -14,5 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "nasaApp"
 include ':app'
-include ':domain'
-include ':testing'

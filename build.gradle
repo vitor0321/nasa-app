@@ -4,8 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath libs.hilt.plugin
         classpath libs.google.services
+        classpath libs.plugin.ksp
     }
 }
 
@@ -15,5 +15,5 @@ plugins {
     alias(libs.plugins.library) apply false
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.jvm) apply false
-    alias(libs.plugins.hilt) apply false
 }
+apply plugin: "com.google.devtools.ksp"

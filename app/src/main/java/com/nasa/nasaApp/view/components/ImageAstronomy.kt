@@ -13,14 +13,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.nasa.nasaApp.domain.model.AstronomyDay
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
-import com.nasa.nasa_app.R
+import com.nasa.nasaApp.view.resource.LocalStrings
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
 
 @Composable
-fun ImageAstronomy(
+internal fun ImageAstronomy(
     astronomyDay: AstronomyDay,
     onClickImage: () -> Unit
 ) {
+    val strings = LocalStrings.current.components
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +34,7 @@ fun ImageAstronomy(
             modifier = Modifier.fillMaxSize(),
             model = ImageRequest.Builder(LocalContext.current).data(astronomyDay.url)
                 .crossfade(true).build(),
-            contentDescription = stringResource(id = R.string.astronomy_picture_of_day),
+            contentDescription = strings.astronomyPictureOfDay,
             contentScale = ContentScale.Crop
         )
     }

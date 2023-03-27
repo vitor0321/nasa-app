@@ -1,7 +1,6 @@
 package com.nasa.nasaApp.view.components
 
 import android.content.res.Configuration
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,15 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nasa.nasaApp.view.theme.AppDefaultTypography
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
-import com.nasa.nasa_app.R
+import com.nasa.nasaApp.view.resource.LocalStrings
+import com.nasa.nasaApp.view.resource.theme.AppDefaultTypography
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
+import java.io.IOException
 
 @Composable
-fun ErrorIndicator(
-    throwable: String?,
+internal fun ErrorIndicator(
+    exception: IOException?,
     modifier: Modifier = Modifier,
-    @StringRes errorTextId: Int = R.string.error,
+    errorText: String?,
 ) {
     Column(
         modifier = Modifier
@@ -41,15 +41,17 @@ fun ErrorIndicator(
         Icon(
             modifier = Modifier.size(100.dp),
             imageVector = Icons.Default.Warning,
-            contentDescription = stringResource(errorTextId),
+            contentDescription =errorText,
             tint = MaterialTheme.colorScheme.error
         )
-        Text(
-            modifier = modifier,
-            text = stringResource(id = errorTextId),
-            style = AppDefaultTypography.titleLarge
-        )
-        throwable?.let {
+        errorText?.let {
+            Text(
+                modifier = modifier,
+                text = it,
+                style = AppDefaultTypography.titleLarge
+            )
+        }
+        exception?.message?.let {
             Text(
                 modifier = modifier,
                 text = it,
@@ -65,6 +67,6 @@ fun ErrorIndicator(
 @Preview
 fun ErrorIndicatorLightPreview() {
     NasaBasicTheme {
-        ErrorIndicator(null)
+        ErrorIndicator(null, errorText = null)
     }
 }

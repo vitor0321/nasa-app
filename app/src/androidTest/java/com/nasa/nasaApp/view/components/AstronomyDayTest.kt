@@ -2,7 +2,7 @@ package com.nasa.nasaApp.view.components
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.nasa.nasaApp.view.presentation.MainActivity
+import com.nasa.nasaApp.view.steps.MainActivity
 import kotlinx.coroutines.runBlocking
 
 import org.junit.Test

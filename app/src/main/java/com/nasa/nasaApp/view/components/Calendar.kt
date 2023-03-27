@@ -22,28 +22,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.nasa.nasaApp.view.common.Constant.DATE_START_ASTRONOMY_DAY
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
+import com.nasa.nasaApp.domain.constants.Constant.DATE_START_ASTRONOMY_DAY
+import com.nasa.nasaApp.view.resource.LocalStrings
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
 import com.nasa.nasa_app.R
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Locale
-import java.util.Date
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 @Composable
-fun CalendarIndicator(
+internal fun CalendarIndicator(
     onDateSelected: (LocalDate) -> Unit,
     onDismissRequest: (LocalDate) -> Unit
 ) {
+    val strings  = LocalStrings.current.components
     val selDate = remember { mutableStateOf(LocalDate.now()) }
 
     Dialog(
@@ -65,7 +66,7 @@ fun CalendarIndicator(
                     .padding(16.dp)
             ) {
                 Text(
-                    text = stringResource(R.string.select_date),
+                    text = strings.selectDate,
                     style = MaterialTheme.typography.titleMedium,
                 )
 
@@ -94,7 +95,7 @@ fun CalendarIndicator(
                     onClick = { onDismissRequest(LocalDate.now()) }
                 ) {
                     Text(
-                        text = stringResource(R.string.cancel),
+                        text = strings.cancel,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -103,7 +104,7 @@ fun CalendarIndicator(
                     onClick = { onDateSelected(selDate.value) }
                 ) {
                     Text(
-                        text = stringResource(R.string.ok),
+                        text = strings.ok,
                         style = MaterialTheme.typography.titleSmall
                     )
                 }

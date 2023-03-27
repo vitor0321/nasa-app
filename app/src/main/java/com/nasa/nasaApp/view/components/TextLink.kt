@@ -28,10 +28,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
 
 @Composable
-fun LinkifyText(
+internal fun LinkifyText(
     text: String,
     modifier: Modifier = Modifier,
     linkColor: Color = Color.Blue,

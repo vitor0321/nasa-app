@@ -1,7 +1,6 @@
 package com.nasa.nasaApp.view.components
 
 import android.content.res.Configuration
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,17 +13,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nasa.nasaApp.view.theme.AppDefaultTypography
-import com.nasa.nasaApp.view.theme.NasaBasicTheme
-import com.nasa.nasa_app.R
+import com.nasa.nasaApp.view.resource.theme.AppDefaultTypography
+import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
 
 @Composable
-fun ProgressIndicator(
+internal fun ProgressIndicator(
     modifier: Modifier = Modifier,
-    @StringRes progressTextId: Int = R.string.loading,
+    progressText: String?,
 ) {
     Column(
         modifier = Modifier
@@ -35,11 +32,13 @@ fun ProgressIndicator(
     ) {
         Spacer(modifier = Modifier.padding(top = 12.dp))
         CircularProgressIndicator()
-        Text(
-            modifier = modifier,
-            text = stringResource(id = progressTextId),
-            style = AppDefaultTypography.titleSmall
-        )
+        progressText?.let {
+            Text(
+                modifier = modifier,
+                text = it,
+                style = AppDefaultTypography.titleSmall
+            )
+        }
         Spacer(modifier = Modifier.padding(bottom = 12.dp))
     }
 }
@@ -49,6 +48,6 @@ fun ProgressIndicator(
 @Preview
 fun ProgressIndicatorLightPreview() {
     NasaBasicTheme {
-        ProgressIndicator()
+        ProgressIndicator(progressText = null)
     }
 }

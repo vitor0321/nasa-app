@@ -1,6 +1,6 @@
 package com.nasa.nasaApp.domain.model
 
-data class Asteroids(
+internal data class Asteroids(
     val id: String,
     val name: String,
     val absoluteMagnitude: Double,
@@ -13,7 +13,7 @@ data class Asteroids(
     val closeApproachData: List<CloseApproach>? = null
 )
 
-data class CloseApproach(
+internal data class CloseApproach(
     val closeApproachDate: String,
     val relativeVelocityKmPerHour: String,
     val relativeVelocityMilesPerHour: String,
