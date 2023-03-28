@@ -1,18 +1,15 @@
 package com.nasa.nasaApp.view
 
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.lyricist.ProvideStrings
 import cafe.adriel.lyricist.rememberStrings
 import cafe.adriel.voyager.navigator.Navigator
 import com.nasa.nasaApp.domain.model.AstronomyDay
 import com.nasa.nasaApp.view.components.AstronomyDayIndicator
 import com.nasa.nasaApp.view.components.CalendarIndicator
-import com.nasa.nasaApp.view.components.ProgressIndicator
 import com.nasa.nasaApp.view.resource.LocalStrings
 import com.nasa.nasaApp.view.resource.strings
 import com.nasa.nasaApp.view.resource.theme.NasaBasicTheme
@@ -33,13 +30,6 @@ class MainActivity : ComponentActivity(), DIAware {
                 NasaBasicTheme { Navigator(screen = HomeScreen) }
             }
         }
-    }
-}
-
-@Composable
-fun Loading() {
-    NasaBasicTheme {
-        ProgressIndicator(progressText = null)
     }
 }
 
@@ -68,14 +58,5 @@ fun Calendar(
             onDateSelected = { onDateSelected(it) },
             onDismissRequest = { onDismissRequest(it) }
         )
-    }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-@Preview
-fun LoadingLightPreview() {
-    NasaBasicTheme {
-        Loading()
     }
 }
