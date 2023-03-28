@@ -24,9 +24,7 @@ internal fun ProgressIndicator(
     progressText: String?,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -48,6 +46,6 @@ internal fun ProgressIndicator(
 @Preview
 fun ProgressIndicatorLightPreview() {
     NasaBasicTheme {
-        ProgressIndicator(progressText = null)
+        ProgressIndicator(progressText = "Loading")
     }
 }
