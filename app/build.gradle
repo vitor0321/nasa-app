@@ -13,7 +13,7 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    namespace "com.nasa.nasa_app"
+    namespace "com.nasa.voyager"
     compileSdk 33
 
     signingConfigs {
@@ -29,7 +29,7 @@ android {
         arg("lyricist.internalVisibility", "true")
     }
     defaultConfig {
-        applicationId "com.nasa.nasaApp"
+        applicationId 'com.nasa.voyager'
         minSdk 26
         targetSdk 33
         versionCode 4
