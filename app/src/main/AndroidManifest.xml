@@ -15,11 +15,11 @@
         android:label="Voyager"
         android:roundIcon="@mipmap/ic_voyager_round"
         android:supportsRtl="true"
-        android:name="com.nasa.nasaApp.NasaApp"
+        android:name="com.nasa.voyager.NasaApp"
         android:theme="@style/Theme.Nasa"
         tools:targetApi="31">
         <activity
-            android:name="com.nasa.nasaApp.view.MainActivity"
+            android:name="com.nasa.voyager.view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nasa">
