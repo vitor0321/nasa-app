@@ -8,6 +8,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import com.nasa.astronomy.view.resource.theme.ExtendedColors
 import com.nasa.voyager.R
 
 val LightThemeColors: ColorScheme

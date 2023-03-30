@@ -4,7 +4,7 @@ import com.nasa.voyager.domain.data.CoroutinesDispatchers
 import com.nasa.voyager.domain.AstronomyDataSource
 import com.nasa.voyager.domain.AsteroidsDataSource
 import com.nasa.voyager.view.steps.AsteroidsViewModel
-import com.nasa.voyager.view.steps.AstronomyViewModel
+import com.nasa.voyager.view.steps.astronomy.AstronomyViewModel
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
 import org.kodein.di.instance

@@ -4,7 +4,7 @@ import cafe.adriel.lyricist.LyricistStrings
 
 @LyricistStrings(languageTag = Locales.PT, default = false)
 internal val StringsPt = Strings(
-    components = Components(
+    astronomy = Astronomy(
         loading = "carregando...",
         error = "hummm... alguma coisa aconteceu!",
         astronomyPictureOfDay = "Foto do dia da Astronomia",
@@ -19,4 +19,7 @@ internal val StringsPt = Strings(
         cancel = "Cancelar",
         ok = "OK",
     ),
+    Components(
+        textClick = "Click aqui para assistir o video",
+    )
 )

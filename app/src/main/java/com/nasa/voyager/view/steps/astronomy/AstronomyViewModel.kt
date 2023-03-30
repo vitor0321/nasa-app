@@ -1,4 +1,4 @@
-package com.nasa.voyager.view.steps
+package com.nasa.voyager.view.steps.astronomy
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
@@ -21,6 +21,7 @@ internal class AstronomyViewModel @Inject constructor(
 
     fun getAstronomyDay() {
         coroutineScope.launch(coroutinesDispatchers.io()) {
+            mutableState.value = UiState.Loading
             try {
                 astronomyDataSource.getAstronomyDay()?.let {
                     mutableState.value = UiState.Success(it)
@@ -33,6 +34,7 @@ internal class AstronomyViewModel @Inject constructor(
 
     fun getAstronomyDayOfDate(date: LocalDate) {
         coroutineScope.launch(coroutinesDispatchers.io()) {
+            mutableState.value = UiState.Loading
             try {
                 val dateToString = "${date.year}-${date.monthValue}-${date.dayOfMonth}"
                 astronomyDataSource.getAstronomyDayOfDate(dateToString)?.let {
@@ -44,14 +46,9 @@ internal class AstronomyViewModel @Inject constructor(
         }
     }
 
-    fun openCalendar() {
-        mutableState.value = UiState.OpenCalendar
-    }
-
     sealed class UiState {
         data class Success(val astronomyDay: AstronomyDay) : UiState()
         data class Error(val exception: IOException?) : UiState()
         object Loading : UiState()
-        object OpenCalendar : UiState()
     }
 }

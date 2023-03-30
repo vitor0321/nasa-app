@@ -20,7 +20,7 @@ internal fun ImageAstronomy(
     astronomyDay: AstronomyDay,
     onClickImage: () -> Unit
 ) {
-    val strings = LocalStrings.current.components
+    val strings = LocalStrings.current.astronomy
 
     Box(
         modifier = Modifier

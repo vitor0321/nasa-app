@@ -28,40 +28,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
+import com.nasa.voyager.view.resource.LocalStrings
 import com.nasa.voyager.view.resource.theme.NasaBasicTheme
 
 @Composable
 internal fun LinkifyText(
     text: String,
     modifier: Modifier = Modifier,
-    linkColor: Color = Color.Blue,
-    linkEntire: Boolean = false,
-    color: Color = Color.Blue,
-    fontSize: TextUnit = TextUnit.Unspecified,
-    fontStyle: FontStyle? = null,
-    fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
-    letterSpacing: TextUnit = TextUnit.Unspecified,
-    textDecoration: TextDecoration? = null,
-    textAlign: TextAlign? = null,
-    lineHeight: TextUnit = TextUnit.Unspecified,
-    overflow: TextOverflow = TextOverflow.Clip,
-    softWrap: Boolean = true,
-    maxLines: Int = Int.MAX_VALUE,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current,
-    clickable: Boolean = true,
-    onClickLink: ((linkText: String) -> Unit)? = null
+    onClickLink: ((linkText: String) -> Unit)? = null,
 ) {
     val uriHandler = LocalUriHandler.current
-    val linkInfos =
-        if (linkEntire) listOf(LinkInfo(text, 0, text.length)) else SpannableStr.getLinkInfos(text)
     val annotatedString = buildAnnotatedString {
         append(text)
-        linkInfos.forEach {
+        SpannableStr.getLinkInfos(text).forEach {
             addStyle(
                 style = SpanStyle(
-                    color = linkColor,
+                    color = Color.Blue,
                     textDecoration = TextDecoration.Underline
                 ),
                 start = it.start,
@@ -75,80 +57,27 @@ internal fun LinkifyText(
             )
         }
     }
-    if (clickable) {
-        ClickableText(
-            text = annotatedString,
-            modifier = modifier,
-            color = color,
-            fontSize = fontSize,
-            fontStyle = fontStyle,
-            fontWeight = fontWeight,
-            fontFamily = fontFamily,
-            letterSpacing = letterSpacing,
-            textDecoration = textDecoration,
-            textAlign = textAlign,
-            lineHeight = lineHeight,
-            overflow = overflow,
-            softWrap = softWrap,
-            maxLines = maxLines,
-            onTextLayout = onTextLayout,
-            style = style,
-            onClick = { offset ->
-                annotatedString.getStringAnnotations(
-                    start = offset,
-                    end = offset,
-                ).firstOrNull()?.let { result ->
-                    if (linkEntire) {
-                        onClickLink?.invoke(annotatedString.substring(result.start, result.end))
-                    } else {
-                        uriHandler.openUri(result.item)
-                        onClickLink?.invoke(annotatedString.substring(result.start, result.end))
-                    }
-                }
+    ClickableText(
+        modifier = modifier,
+        onClick = { offset ->
+            annotatedString.getStringAnnotations(
+                start = offset,
+                end = offset,
+            ).firstOrNull()?.let { result ->
+                uriHandler.openUri(result.item)
+                onClickLink?.invoke(annotatedString.substring(result.start, result.end))
             }
-        )
-    } else {
-        Text(
-            text = annotatedString,
-            modifier = modifier,
-            color = color,
-            fontSize = fontSize,
-            fontStyle = fontStyle,
-            fontWeight = fontWeight,
-            fontFamily = fontFamily,
-            letterSpacing = letterSpacing,
-            textDecoration = textDecoration,
-            textAlign = textAlign,
-            lineHeight = lineHeight,
-            overflow = overflow,
-            softWrap = softWrap,
-            maxLines = maxLines,
-            onTextLayout = onTextLayout,
-            style = style
-        )
-    }
+        }
+    )
 }
 
 @Composable
 private fun ClickableText(
-    text: AnnotatedString,
     modifier: Modifier = Modifier,
-    color: Color = Color.Unspecified,
-    fontSize: TextUnit = TextUnit.Unspecified,
-    fontStyle: FontStyle? = null,
-    fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
-    letterSpacing: TextUnit = TextUnit.Unspecified,
-    textDecoration: TextDecoration? = null,
-    textAlign: TextAlign? = null,
-    lineHeight: TextUnit = TextUnit.Unspecified,
-    overflow: TextOverflow = TextOverflow.Clip,
-    softWrap: Boolean = true,
-    maxLines: Int = Int.MAX_VALUE,
-    onTextLayout: (TextLayoutResult) -> Unit = {},
-    style: TextStyle = LocalTextStyle.current,
-    onClick: (Int) -> Unit
+    onClick: (Int) -> Unit,
 ) {
+    val strings = LocalStrings.current.components
+
     val layoutResult = remember { mutableStateOf<TextLayoutResult?>(null) }
     val pressIndicator = Modifier.pointerInput(onClick) {
         detectTapGestures { pos ->
@@ -158,35 +87,23 @@ private fun ClickableText(
         }
     }
     Text(
-        text = text,
+        text = strings.textClick,
         modifier = modifier.then(pressIndicator),
-        color = color,
-        fontSize = fontSize,
-        fontStyle = fontStyle,
-        fontWeight = fontWeight,
-        fontFamily = fontFamily,
-        letterSpacing = letterSpacing,
-        textDecoration = textDecoration,
-        textAlign = textAlign,
-        lineHeight = lineHeight,
-        overflow = overflow,
-        softWrap = softWrap,
-        maxLines = maxLines,
+        color = Color.Blue,
+        overflow = TextOverflow.Clip,
         onTextLayout = {
             layoutResult.value = it
-            onTextLayout(it)
-        },
-        style = style
+        }
     )
 }
 
 private data class LinkInfo(
     val url: String,
     val start: Int,
-    val end: Int
+    val end: Int,
 )
 
-private class SpannableStr(source: CharSequence) : SpannableString(source) {
+private class SpannableStr (source: CharSequence) : SpannableString(source) {
     companion object {
         fun getLinkInfos(text: String): List<LinkInfo> {
             val spannableStr = SpannableStr(text)
@@ -202,7 +119,7 @@ private class SpannableStr(source: CharSequence) : SpannableString(source) {
     private inner class Data(
         val what: Any?,
         val start: Int,
-        val end: Int
+        val end: Int,
     )
 
     private val spanList = mutableListOf<Data>()

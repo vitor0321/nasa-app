@@ -42,13 +42,13 @@ import java.util.Locale
 @Composable
 internal fun CalendarIndicator(
     onDateSelected: (LocalDate) -> Unit,
-    onDismissRequest: (LocalDate) -> Unit
+    onDismissRequest: () -> Unit
 ) {
-    val strings  = LocalStrings.current.components
+    val strings  = LocalStrings.current.astronomy
     val selDate = remember { mutableStateOf(LocalDate.now()) }
 
     Dialog(
-        onDismissRequest = { onDismissRequest(LocalDate.now()) },
+        onDismissRequest = { onDismissRequest() },
         properties = DialogProperties()
     ) {
         Column(
@@ -92,7 +92,7 @@ internal fun CalendarIndicator(
                     .padding(bottom = 16.dp, end = 16.dp)
             ) {
                 TextButton(
-                    onClick = { onDismissRequest(LocalDate.now()) }
+                    onClick = { onDismissRequest() }
                 ) {
                     Text(
                         text = strings.cancel,

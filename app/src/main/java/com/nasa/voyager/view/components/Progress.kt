@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,11 +23,10 @@ internal fun ProgressIndicator(
     progressText: String?,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.padding(top = 12.dp))
         CircularProgressIndicator()
         progressText?.let {
             Text(
@@ -35,7 +35,6 @@ internal fun ProgressIndicator(
                 style = AppDefaultTypography.titleSmall
             )
         }
-        Spacer(modifier = Modifier.padding(bottom = 12.dp))
     }
 }
 

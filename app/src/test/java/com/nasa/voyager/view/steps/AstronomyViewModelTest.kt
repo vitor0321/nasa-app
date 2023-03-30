@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nasa.voyager.MainCoroutineRule
 import com.nasa.voyager.domain.AstronomyDataSource
 import com.nasa.voyager.domain.model.AstronomyDayFactory
+import com.nasa.voyager.view.steps.astronomy.AstronomyViewModel
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
