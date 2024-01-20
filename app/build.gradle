@@ -4,13 +4,9 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "com.google.devtools.ksp"
 
-def storeKeyPropertiesFile = rootProject.file("storeKey.properties")
-def storeKeyProperties = new Properties()
-storeKeyProperties.load(new FileInputStream(storeKeyPropertiesFile))
-
-def apikeyPropertiesFile = rootProject.file("apikey.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     namespace "com.nasa.voyager"
@@ -18,10 +14,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(storeKeyProperties['FILE_KEY'])
-            storePassword storeKeyProperties['STORE_KEY']
-            keyAlias storeKeyProperties['ALIAS_KEY']
-            keyPassword storeKeyProperties['STORE_KEY']
+            storeFile file(localProperties['FILE_KEY'])
+            storePassword localProperties['STORE_KEY']
+            keyAlias localProperties['ALIAS_KEY']
+            keyPassword localProperties['STORE_KEY']
         }
     }
 
@@ -40,7 +36,7 @@ android {
             useSupportLibrary true
         }
 
-        buildConfigField "String", "PRIVATE_KEY", apikeyProperties['PRIVATE_KEY']
+        buildConfigField "String", "PRIVATE_KEY", localProperties['PRIVATE_KEY']
         buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/"'
     }
 
