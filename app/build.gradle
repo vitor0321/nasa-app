@@ -10,7 +10,7 @@ localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     namespace "com.nasa.voyager"
-    compileSdk 33
+    compileSdk 34
 
     signingConfigs {
         release {
@@ -20,14 +20,10 @@ android {
             keyPassword localProperties['STORE_KEY']
         }
     }
-
-    ksp {
-        arg("lyricist.internalVisibility", "true")
-    }
     defaultConfig {
         applicationId 'com.nasa.voyager'
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 4
         versionName "1.0.3"
 
@@ -35,7 +31,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
-
+        android.buildFeatures.buildConfig true
         buildConfigField "String", "PRIVATE_KEY", localProperties['PRIVATE_KEY']
         buildConfigField "String", "BASE_URL", '"https://api.nasa.gov/"'
     }
@@ -68,11 +64,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose true
@@ -86,18 +82,22 @@ android {
     kapt {
         correctErrorTypes true
     }
+    ksp {
+        arg("lyricist.internalVisibility", "true")
+        arg("lyricist.generateStringsProperty", "true")
+    }
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }
-    kotlin.sourceSets.all {
-        android.applicationVariants.all { variant -> kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin") }
+    kotlin.sourceSets.configureEach {
+        android.applicationVariants.configureEach { variant -> kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin") }
     }
 }
 
 dependencies {
 
     implementation libs.core
-    implementation libs.kotlin.bom
+    implementation platform(libs.kotlin.bom)
     implementation libs.lifecycle
     implementation libs.lifecycle.viewmodel
     implementation libs.lifecycle.livedata
@@ -131,13 +131,13 @@ dependencies {
     ksp libs.lyricist.debug
 
     //Firebase
-    implementation libs.firebase.bom
+    implementation platform(libs.firebase.bom)
 //    implementation libs.firebase.analytics
 
     implementation libs.coroutines.core
     implementation libs.retrofit
     implementation libs.retrofit.converter
-    implementation libs.okhttp3.bom
+    implementation platform(libs.okhttp3.bom)
     implementation libs.okhttp3
     implementation libs.okhttp3.interceptor
 
